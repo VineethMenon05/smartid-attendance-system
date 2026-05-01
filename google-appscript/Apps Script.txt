@@ -1,0 +1,101 @@
+// Smart Attendance System with Google Sheets and LCD Display
+var ss = SpreadsheetApp.openById('1tNjfeDknGADdyxme4xS-eMsl5NHyVWE-621O-ZcdpAA'); //Enter your googlesheets URL Id here
+var sheet = ss.getSheetByName('Sheet1');
+var timezone = "Asia/Kolkata"; //Set your timezone
+// 📧 USER EMAIL DATABASE
+var emailMap = {
+  "VINAY": "vingaj765@gmail.com",
+  "RITIK": "rv994979@gmail.com",
+  "JASON": "dasjason77@gmail.com",
+  "VINEETH": "menonvineeth555@gmail.com",
+  "ASHUTOSH": "Student24090@gmail.com"
+};
+
+function doGet(e){
+
+  // 🔥 SAFE ENTRY CHECK
+  if (!e || !e.parameter) {
+    return ContentService.createTextOutput("No parameters");
+  }
+
+  var Curr_Date = new Date();
+  var formattedDate = Utilities.formatDate(Curr_Date, timezone, 'dd/MM/yy');
+  var Curr_Time = Utilities.formatDate(Curr_Date, timezone, 'HH:mm:ss');
+
+  // 🔥 SAFE PARAM READ
+  var name = e.parameter.name || "";
+  var type = e.parameter.type || "";
+
+  name = name.toString().toUpperCase().trim();
+  type = type.toString().toLowerCase().trim();
+
+  var duration = e.parameter.duration || "";
+    // ✅ FORMAT DURATION
+  if (duration !== "") {
+    duration = Math.floor(duration/60) + " min " + (duration % 60) + " sec";
+  }
+
+var userEmail = emailMap[name];
+
+if (type === "login") {
+  if (userEmail) {
+    try {
+      MailApp.sendEmail({
+        to: userEmail,
+        subject: "Login Alert - " + name,
+        body: "Hello " + name + ",\n\nYou have successfully logged in at " + Curr_Time + " on " + formattedDate + "."
+      });
+    } catch (err) {
+      Logger.log(err);
+    }
+  }
+}
+
+if (type === "logout") {
+  if (userEmail) {
+    try {
+      MailApp.sendEmail({
+      to: userEmail,
+      subject: "Logout Alert - " + name,
+      body: "Hello "+ name +",\nYou have successfully logged out at " + Curr_Time + " on "+ formattedDate + "."+
+      "\nDuration: " + duration
+    });
+  } catch(err){
+    Logger.log(err);
+  }
+}
+}
+
+  var hour = Curr_Date.getHours();
+  var status = (hour < 17) ? "Present" : "Late";
+
+  var nextRow = sheet.getLastRow() + 1;
+
+  // 🔥 ALWAYS WRITE (NO CONDITIONS)
+  sheet.getRange("A" + nextRow).setValue(formattedDate);
+  sheet.getRange("B" + nextRow).setValue(Curr_Time);
+  sheet.getRange("C" + nextRow).setValue(name);
+  sheet.getRange("D" + nextRow).setValue(status);
+  sheet.getRange("E" + nextRow).setValue(type.charAt(0).toUpperCase() + type.slice(1));
+  sheet.getRange("F" + nextRow).setValue(duration);
+
+  return ContentService.createTextOutput("OK");
+}
+
+
+
+function stripQuotes( value ) {
+  return value.toString().replace(/^["']|['"]$/g, "");
+}
+
+//Extra Function. Not used in this project.
+//planning to use in future projects.
+//this function is used to handle POST request
+function doPost(e) {
+  var val = e.parameter.value;
+  
+  if (e.parameter.value !== undefined){
+    var range = sheet.getRange('A2');
+    range.setValue(val);
+  }
+}
