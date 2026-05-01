@@ -126,4 +126,4 @@ Use it in your backend
 👨‍💻 Author
 
 Vineeth Menon
-🔗 LinkedIn
+🔗 [LinkedIn](https://www.linkedin.com/in/https://www.linkedin.com/in/vineeth-menon-09b911287/)
