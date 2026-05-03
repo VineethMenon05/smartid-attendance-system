@@ -55,6 +55,83 @@ smartid-attendance-system/
 Camera → Face Recognition (OpenCV) → Flask Backend → Google Apps Script → Google Sheets
 Arduino (RFID) → Flask Backend → Google Apps Script → Google Sheets
 
+## 📄 Research Publication
+
+📌 **Title:** SmartID: IoT-Based Smart Attendance System with Dual Authentication Using Face Recognition and RFID  
+
+👨‍💻 **Authors:** Vinay Kumar Gajendra, Ritik Kumar, Vineeth Menon, Jason Ralph Das, Neha Choubey  
+
+🏫 **Institution:** Shri Shankaracharya Technical Campus  
+
+📚 **Journal:** International Journal of Creative Research Thoughts (IJCRT)  
+
+📅 **Published:** March 2026  
+
+🆔 **ISSN:** 2320-2882  
+
+---
+
+### 📖 Abstract
+
+This research presents **SmartID**, an IoT-based smart attendance system integrating **face recognition and RFID-based dual authentication** to improve accuracy and security.  
+
+The system uses:
+- 📷 Face Recognition (Python, OpenCV)
+- 📡 RFID Authentication
+- 🌐 NodeMCU (ESP8266) for IoT communication
+- ☁️ Google Sheets for cloud storage
+- 📧 Email notifications for transparency  
+
+This approach minimizes proxy attendance, automates tracking, and provides real-time data access.
+
+---
+
+### 🔗 Access the Paper
+
+📥 [Download Full Research Paper](research-paper/Smart_ID_Attendance_System_Research_Paper.pdf)
+
+---
+
+### 🚀 Key Contributions
+
+- 🔐 Dual Authentication (Face + RFID)
+- 🌐 IoT-based real-time system using ESP8266
+- ☁️ Cloud integration with Google Sheets
+- 📧 Automated email alerts for attendance
+- ⏱️ Login/Logout tracking with duration calculation
+- 💰 Cost-effective & scalable solution
+
+---
+
+### 📊 System Architecture
+
+The system integrates hardware and software components including:
+
+- Face Recognition Module (Python)
+- RFID Reader Module
+- NodeMCU (ESP8266)
+- Google Apps Script (Backend)
+- Google Sheets (Database)
+
+---
+
+### 📈 Results
+
+- ✔️ Accurate attendance tracking
+- ✔️ Real-time cloud updates
+- ✔️ Reduced proxy attendance
+- ✔️ Efficient and scalable implementation
+
+---
+
+### 🔮 Future Scope
+
+- 📱 Mobile/Web dashboard
+- 🤖 Advanced face recognition models
+- 🗄️ Database integration (MySQL/PostgreSQL)
+- 🔍 Liveness detection for enhanced security
+
+  
 ## ▶️ How to Run
 
 ### 🔹 1. Clone the repository
